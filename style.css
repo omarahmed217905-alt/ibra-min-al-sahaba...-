@@ -1,0 +1,345 @@
+:root {
+    --bg-charcoal: #121214; 
+    --bg-card: #1a1a1e; 
+    --beige-sandy: #dfba73; 
+    --beige-light: #f5ebd6; 
+    --text-muted: #a0a0ab; 
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-charcoal);
+    color: var(--beige-light);
+    font-family: 'Tajawal', 'Cairo', sans-serif;
+    line-height: 1.8;
+    padding-bottom: 60px;
+}
+
+/* شريط تقدم القراءة */
+.progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: rgba(18, 18, 20, 0.8);
+    z-index: 1000;
+}
+
+.progress-bar {
+    height: 5px;
+    background: var(--beige-sandy);
+    width: 0%;
+    border-radius: 0 5px 5px 0;
+}
+
+header {
+    text-align: center;
+    padding: 80px 20px 60px; 
+    border-bottom: 1px solid rgba(223, 186, 115, 0.15);
+    background: linear-gradient(180deg, #18181c 0%, var(--bg-charcoal) 100%);
+}
+
+header h1 {
+    font-family: 'Cairo', sans-serif;
+    color: var(--beige-sandy);
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    animation: pulse 3s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { text-shadow: 0 0 0px rgba(223, 186, 115, 0); }
+    100% { text-shadow: 0 0 15px rgba(223, 186, 115, 0.3); }
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* كلاسات الأنيميشن عند التمرير */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stories-title {
+    font-family: 'Cairo', sans-serif;
+    color: var(--beige-sandy);
+    text-align: center;
+    margin: 60px 0 30px 0;
+    font-size: 2rem;
+}
+
+.story-card {
+    background-color: var(--bg-card);
+    border: 1px solid rgba(223, 186, 115, 0.1);
+    border-radius: 12px;
+    padding: 35px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(223, 186, 115, 0.3);
+}
+
+.story-card h3 {
+    color: var(--beige-sandy);
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(223, 186, 115, 0.1);
+    padding-bottom: 10px;
+}
+
+.story-text {
+    color: var(--beige-light);
+    text-align: justify;
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+    white-space: pre-line; 
+}
+
+/* صندوق الدروس المستفادة التفاعلي (Accordion) */
+.lessons-box {
+    background-color: rgba(18, 18, 20, 0.6);
+    border-right: 4px solid var(--beige-sandy);
+    border-radius: 4px 12px 12px 4px;
+    overflow: hidden;
+}
+
+.lessons-header {
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    transition: background-color 0.3s;
+}
+
+.lessons-header:hover {
+    background-color: rgba(223, 186, 115, 0.05);
+}
+
+.lessons-header h4 {
+    color: var(--beige-sandy);
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.toggle-icon {
+    color: var(--beige-sandy);
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.lessons-header.active .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.lessons-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    padding: 0 20px;
+}
+
+.lessons-content ul {
+    list-style-type: none;
+    padding-bottom: 20px;
+}
+
+.lessons-content ul li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-right: 20px;
+    color: #e2dcd0;
+}
+
+.lessons-content ul li::before {
+    content: "•";
+    color: var(--beige-sandy);
+    font-size: 1.5rem;
+    position: absolute;
+    right: 0;
+    top: -4px;
+}
+
+/* زر الإعجاب التفاعلي */
+.card-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed rgba(223, 186, 115, 0.1);
+}
+
+.like-btn {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--text-muted);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.like-btn:hover {
+    border-color: var(--beige-sandy);
+    color: var(--beige-sandy);
+}
+
+.like-btn.liked {
+    background: var(--beige-sandy);
+    color: var(--bg-charcoal);
+    border-color: var(--beige-sandy);
+    transform: scale(1.05);
+}
+
+.like-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+}
+
+.like-btn.liked .like-icon {
+    transform: scale(1.2);
+}
+
+.more-btn-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.discover-btn {
+    background-color: transparent;
+    color: var(--beige-sandy);
+    border: 2px solid var(--beige-sandy);
+    padding: 12px 35px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.discover-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(223, 186, 115, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.discover-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.discover-btn:hover {
+    background-color: var(--beige-sandy);
+    color: var(--bg-charcoal);
+    box-shadow: 0 0 15px rgba(223, 186, 115, 0.4);
+}
+
+footer {
+    text-align: center;
+    margin-top: 80px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Video Cards - لينكات يوتيوب */
+.video-card {
+    background-color: var(--bg-card);
+    border: 1px solid rgba(223, 186, 115, 0.15);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.video-card:hover {
+    border-color: var(--beige-sandy);
+    transform: translateY(-3px);
+}
+
+.video-card h4 {
+    color: var(--beige-sandy);
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.video-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.watch-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--beige-sandy);
+    color: var(--bg-charcoal);
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(223, 186, 115, 0.3);
+}
+
+.watch-btn:hover {
+    background-color: #f0d090;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(223, 186, 115, 0.4);
+}
+
+.watch-btn .play-icon {
+    font-size: 1.3rem;
+}
